@@ -166,6 +166,20 @@
 		}
 
 		var circles = [];
+		var characters = "abcdefghijklmnopqrstuvwxyz";
+
+		function onMouseDown(event) {
+			var maxPoint = new Point(view.size.width, view.size.height);
+			var point = Point.random();
+			var idx = Math.floor(Math.random() * 26);
+			var randomKey = characters.charAt(idx);
+			var circle = new Path.Circle(maxPoint * point, 100);
+			circle.fillColor = keyData[randomKey].color;
+			circles.push(circle);
+			keyData[randomKey].sound.play();
+			console.log(event.key-'a');
+		}
+
 		function onKeyDown(event) {
 			if (!keyData[event.key]) return;
 			var maxPoint = new Point(view.size.width, view.size.height);
